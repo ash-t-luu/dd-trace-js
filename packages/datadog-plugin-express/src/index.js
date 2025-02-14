@@ -16,7 +16,7 @@ class ExpressPlugin extends RouterPlugin {
       console.log('handling req', req.method, req.url);
       this.setFramework(req, 'express', this.config);
       console.timeEnd('PluginExecution');
-      // this.tracer.setTag('custom.tag', this.config); - applies to all the express spans
+      this.tracer.setTag('custom.tag', this.config); // - applies to all the express spans
       // add tags to see in trace explorer
     })
   }
