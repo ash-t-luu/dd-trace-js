@@ -18,7 +18,7 @@ class RouterPlugin extends WebPlugin {
     this._contexts = new WeakMap()
 
     this.addSub(`apm:${this.constructor.id}:middleware:enter`, ({ req, name, route }) => {
-      const childOf = this._getActive(req) || this._getStoreSpan()
+      const childOf = this._getActive(req) || this._getStoreSpan() // first returns last ele of middelware array and second returns store object
 
       if (!childOf) return
 
@@ -112,7 +112,7 @@ class RouterPlugin extends WebPlugin {
       }
     })
 
-    analyticsSampler.sample(span, this.config.measured)
+    analyticsSampler.sample(span, this.config.measured) // sampling (through calculations or by customer-made) - span will be measured and marked as important to be sent over 
 
     return span
   }
